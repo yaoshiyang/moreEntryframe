@@ -1,0 +1,11 @@
+<script src="js/vendor.boundle.js"></script>
+<script
+  src="https://code.jquery.com/jquery-3.1.0.js"
+  integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="
+  crossorigin="anonymous">
+</script>
+<% js && js.length && js.forEach(function(link){ %>
+    <script src="<%= link %>"></script>
+<% }) %>
+<!-- build:js -->
+<!-- endbuild -->
