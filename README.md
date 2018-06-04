@@ -57,22 +57,40 @@
 
 ## 注意：
 
-第一点
--------
-rule里面的快照加入react 主要为了使代码方便解析jsx 未成功，取舍后改成art-template;
+* 第一点
 
-第二点
--------
-html > 支持模板功能使用的模板是 art-template
+    借助于art-template 实现， JS 和 HTML 模板功能。（如果需要支持JSX语法，则需要引入react库）
 
-第三点
--------
-gulpTask -> server 支持代理功能，但是需要自己配置 targetRoot 
+* 第二点
 
-第四点
--------
-html目录下的每个 page 都要建立对应的 css, 和 js 否则报错
+    html > 
 
-### 运行环境
-node > 10.0
+       1.支持模板功能使用的模板是 art-template
+       2.会自动生成对应[name].js & [name].css & common.js
+       3.也可支持首屏CSS内置，见demo
+
+    js > 
+
+       1.支持模板功能使用的模板是 art-template,管道使用方式，改变见demo
+       2.支持ES6，支持ES7部分语法
+       3.支持模块化调用。
+       4.不支持Style文件解析
+    
+    css > 
+
+       1.使用的是less解析，相关功能
+       2.如有需求可自我引入postCss解析，比如px -> rem
+
+* 第三点
+
+      gulpTask -> server 支持代理功能，但是需要自己配置 targetRoot 
+
+
+* 第四点
+
+      html目录下的每个 page 都要建立对应的 css, 和 js 否则报错
+
+## 运行环境
+
+node >= 10.0
 
