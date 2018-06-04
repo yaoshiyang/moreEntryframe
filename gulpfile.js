@@ -39,14 +39,16 @@ var bin = {
     assets:'bin/assets',
 }
 
-// gulp task 1.return 是用来表示流程是异步还是同步的 
+// gulp task 1.return 是用来表示流程是异步还是同步的  return同步任务， 异步任务要加个callBack函数
 // 注册任务；
 const cleanTask = require(__dirname + '/gulpTask/clean');
-gulp.task('cleanDist', ()=>{
+gulp.task('cleanDist', done=>{
     cleanTask.cleanDist(gulp, $, dist)
+    done();
 });
-gulp.task('cleanBin', () =>{
+gulp.task('cleanBin', done =>{
     cleanTask.cleanBin(gulp, $, bin)
+    done();
 });
 
 const copyTask = require(__dirname + '/gulpTask/copy');
@@ -71,11 +73,13 @@ gulp.task('html', ()=>{
 });
 
 const jsTask = require(__dirname + '/gulpTask/javascript');
-gulp.task('production', () => {
-    jsTask.production(gulp, $)
+// done 的意义在于告知gulp任务流的结束
+gulp.task('production', (done) => {
+    jsTask.production(gulp, $, done);
 });
-gulp.task('developMent', ()=>{
+gulp.task('developMent', (done)=>{
     jsTask.developMent(gulp, $)
+    done();
 });
 
 const serverTask = require(__dirname + '/gulpTask/server');
@@ -102,7 +106,7 @@ gulp.task('default',() =>{
 
 // 生产环境task
 gulp.task('build', ()=>{
-    $.sequence(['cleanDist'],['copyVendor','copyAssets','html','lessToCss'],['production'],['cleanBin'],['copyDist'])(function(){
+    $.sequence(['cleanDist'],'production',['copyVendor','copyAssets','html','lessToCss'],['cleanBin'],'copyDist')(function(){
         console.log('===========生产环境发布成功===========');
     })
 });

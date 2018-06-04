@@ -3,7 +3,7 @@ const glob = require("glob");
 const path = require('path');
 const config = {
     entry: {
-        // vendor: ['art-template']   // 注册第三方需要打包的库 注意这个包最大不建议244K
+        common: ['Tpl/test.art', 'common']   // 注册第三方需要打包的库 注意这个包最大不建议244
     },
     output: {
         path: path.resolve(__dirname , 'dist/js/'),
@@ -34,7 +34,8 @@ const config = {
     },
     resolve:{
         alias:{
-            "Tpl": path.resolve(__dirname , 'src/html/components/')  // 配置art路径
+            "Tpl": path.resolve(__dirname , 'src/html/components/'),  // 配置art路径
+            "common": path.resolve(__dirname , 'src/js/common/test.js')  // 配置art路径
         }
     },
     plugins: [
@@ -45,12 +46,12 @@ const config = {
     },
     optimization:{
         splitChunks:{
-            chunks: 'all',
             cacheGroups:{
-                vendor:{
-                    test: /[\\/]node_modules[\\/]/,
-                    name: "vendor.boundle",
-                    chunks: "all"
+                common:{
+                    test: /common/,
+                    name: "common",  // chunks with equal name are merged
+                    chunks: "initial",
+                    enforce: true    // Ignore minimum size, minimum chunks and maximum requests and always create chunks for this cache group
                 }
             }
         }

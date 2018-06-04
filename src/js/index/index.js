@@ -1,5 +1,5 @@
 import $  from 'window$';
-import label from '../common/test';
+import label from 'common';
 import test from 'Tpl/test.art';
 
 // 如果想用管道

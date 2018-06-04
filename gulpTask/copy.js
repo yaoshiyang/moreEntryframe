@@ -20,7 +20,7 @@ module.exports = {
     copyDist(gulp, $, dist, bin){
         $.util.log(`copy 生产文件到发布环境`);
         return gulp.src(dist.root+ '**/*')
-         .pipe($.zip('production.zip'))
+        //  .pipe($.zip('production.zip'))
          .pipe(gulp.dest(bin.root));
     }
 }
