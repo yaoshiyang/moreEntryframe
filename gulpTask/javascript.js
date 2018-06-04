@@ -25,6 +25,11 @@ module.exports = {
         devConfig = Object.assign({}, webpackConfig);
         devConfig.mode = 'development'
         devConfig.devtool = "soucemap";
+        devConfig.watch = true;  // 这边通过watch增量构建法来优化webpack，同时注意不能在gulp同步任务使用，会阻塞流的！
+        devConfig.watchOptions = { 
+            aggregateTimeout: 300,
+            ignored: /node_modules/
+        };
         devCompiler = webpack(devConfig);
         devCompiler.run((err, stats) => {
             if (err) {

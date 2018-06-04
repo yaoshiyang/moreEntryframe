@@ -11,5 +11,5 @@ const html = test({
 });
 
 $('div').html(html);
-
+$('body').html(html);
 console.log(label,'在index页面');

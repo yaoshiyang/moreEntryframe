@@ -74,7 +74,9 @@
        1.支持模板功能使用的模板是 art-template,管道使用方式，改变见demo
        2.支持ES6，支持ES7部分语法
        3.支持模块化调用。
-       4.不支持Style文件解析
+       4.不支持Style文件解析。
+       5.第三方库，通过 webpack中 externals, 然后在html引用cdn ， 这种方式。 考虑到npm 包并未gzip;
+       6.支持webpack的watch模式在development模式下，增量构建，稍微优化下webpack
     
     css > 
 
