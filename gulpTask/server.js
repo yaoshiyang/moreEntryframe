@@ -6,8 +6,8 @@
  * @param src 资源参数对象
  */
 const proxyMiddleware = require('http-proxy-middleware'); //代理
-
-const targetRoot = 'http://192.168.82.11:7085' ;
+const configFrame = require('../configFrame');
+const targetRoot = configFrame.gulp_server_targetRoot||'http://192.168.82.11:7085';
 
 module.exports = function (gulp, $, dist) {
     $.util.log(`================================`);

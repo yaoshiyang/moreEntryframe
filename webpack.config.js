@@ -1,9 +1,13 @@
 const webpack = require("webpack");
 const glob = require("glob");
 const path = require('path');
+const configFrame = require('./configFrame');
+const { union } = require('lodash');
+
 const config = {
     entry: {
-        common: ['Tpl/test.art', 'common']   // 注册第三方需要打包的库 注意这个包最大不建议244
+        // 1.注册第三方需要打包的库 注意这个包最大不建议244  2.不建议取消common,正常活动页都会产生2个即以上页面
+        common: union(['common'], configFrame.webpack_entryCommon)   
     },
     output: {
         path: path.resolve(__dirname , 'dist/js/'),
@@ -33,17 +37,13 @@ const config = {
         ]
     },
     resolve:{
-        alias:{
+        alias:Object.assign({},{
             "Tpl": path.resolve(__dirname , 'src/html/components/'),  // 配置art路径
-            "common": path.resolve(__dirname , 'src/js/common/test.js')  // 配置common.js
-        }
+            "common": path.resolve(__dirname , 'src/js/common/index.js')  // 配置common.js
+        },configFrame.webpack_resolve_alias)
     },
-    plugins: [
-
-    ],
-    externals:{
-        window$ : 'window.$'  // 把jquery注册到全局 ， 这样涉及到第三方jquery也可以用了。html直接引入JS 即可
-    },
+    plugins: [],
+    externals:Object.assign({},configFrame.webpack_externals),
     optimization:{   // 如果使用很多第三方库，请分开打包
         splitChunks:{
             cacheGroups:{

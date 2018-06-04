@@ -6,6 +6,8 @@
  * @param src 资源参数对象
  * @param dist/bin 打包资源
  */
+const configFrame = require('../configFrame');
+
 module.exports = {
     copyVendor(gulp, $, src, dist){
         $.util.log(`copy 第三方资源`);
@@ -19,8 +21,8 @@ module.exports = {
     },
     copyDist(gulp, $, dist, bin){
         $.util.log(`copy 生产文件到发布环境`);
-        return gulp.src(dist.root+ '**/*')
-        //  .pipe($.zip('production.zip'))
-         .pipe(gulp.dest(bin.root));
+        const src = gulp.src(dist.root+ '**/*');
+        if(configFrame.gulp_copy_copyDist_isZip) src.pipe($.zip('production.zip'));
+        return src.pipe(gulp.dest( configFrame.gulp_copy_copyDist_root || bin.root));
     }
 }

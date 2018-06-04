@@ -8,7 +8,8 @@
  */
 const artTemplate = require('art-template');
 const path = require('path');
-
+const configFrame = require('../configFrame');
+const { isObject } = require('lodash');
 // 还可以扩展动态获取common.js 等；
 
 module.exports = function(gulp, $, src, dist){
@@ -18,7 +19,15 @@ module.exports = function(gulp, $, src, dist){
         tag: 'template',
         paths: [path.resolve('src/html/components')],
         engine: function(template, data) {
+            // 默认注册了hash方法
             artTemplate.defaults.imports.hash = () => Math.random().toString(16).substr(2);
+            const imports = configFrame.gulp_html_template_imports;
+            if(!isObject(imports)) {
+                $.util.log('[gulp-task-html]',`管道符必须是对象类型`)
+            }else{
+                // 生成管道符
+                Object.keys(imports).map(keys => artTemplate.defaults.imports[String(keys)] = imports[keys]);
+            }
             return artTemplate.compile(template)(data)
         },
         data: {

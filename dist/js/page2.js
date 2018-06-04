@@ -161,7 +161,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common */ "./src/js/common/test.js");
+/* harmony import */ var common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! common */ "./src/js/common/index.js");
 
 
 console.log(common__WEBPACK_IMPORTED_MODULE_0__["default"],'在page2页面2222222');
