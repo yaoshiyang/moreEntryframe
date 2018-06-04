@@ -27,7 +27,7 @@ const config = {
                 exclude: /node_modules/,
                 loader: 'bebel-loader',
                 options: { 
-                    presets: ['es2015', 'stage-0', 'react'] // react 快照其实可以不要，本来准备做jsx支持的
+                    presets: ['es2015', 'stage-0'] // react 快照其实可以不要，本来准备做jsx支持的
                 }
             }
         ]
@@ -35,7 +35,7 @@ const config = {
     resolve:{
         alias:{
             "Tpl": path.resolve(__dirname , 'src/html/components/'),  // 配置art路径
-            "common": path.resolve(__dirname , 'src/js/common/test.js')  // 配置art路径
+            "common": path.resolve(__dirname , 'src/js/common/test.js')  // 配置common.js
         }
     },
     plugins: [
@@ -44,7 +44,7 @@ const config = {
     externals:{
         window$ : 'window.$'  // 把jquery注册到全局 ， 这样涉及到第三方jquery也可以用了。html直接引入JS 即可
     },
-    optimization:{
+    optimization:{   // 如果使用很多第三方库，请分开打包
         splitChunks:{
             cacheGroups:{
                 common:{
@@ -56,6 +56,7 @@ const config = {
             }
         }
     },
+    // cache:false,
     node: {
         fs: "empty"  // can't resolve 'fs' => https://github.com/aui/art-template-loader/issues/5
     }

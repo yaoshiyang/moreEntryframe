@@ -10,7 +10,7 @@ const path = require('path');
 module.exports = function (gulp, $, src, task) {
     $.util.log(`正在执行监测任务`);
     gulp.watch(src.html, [task.html])
-    gulp.watch("src/**/*.js", [task.webpackDevelopment]);
+    // gulp.watch("src/**/*.js", [task.webpackDevelopment]); // 这种方式是全部更新不可取
     gulp.watch("src/**/*.less", [task.style]);
     gulp.watch("dist/**/*").on('change', function(file) {
         gulp.src('dist/')
