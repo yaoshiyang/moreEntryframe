@@ -15,5 +15,3 @@ $('div').html(html);
 console.log(label,'在index页面');
 
 console.log(label,'在index111页面');
-
-console.log(label,'在index7764页面');

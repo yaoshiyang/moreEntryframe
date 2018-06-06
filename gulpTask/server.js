@@ -7,8 +7,7 @@
  */
 const proxyMiddleware = require('http-proxy-middleware'); //代理
 const configFrame = require('../configFrame');
-const targetRoot = configFrame.gulp_server_targetRoot||'http://192.168.82.11:7085';
-
+const targetRoot = configFrame.gulp_server_targetRoot;
 module.exports = function (gulp, $, dist) {
     $.util.log(`================================`);
     $.util.log(`启动本地服务http://localhost:8080`);

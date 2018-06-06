@@ -40,6 +40,6 @@ module.exports = {
 
     // 配置 gulpTask -> server
     // 只支持单个不支持多个， 多个可自行改代码
-    gulp_server_targetRoot : 'http://192.168.82.11:7085'
+    gulp_server_targetRoot : process.env.NODE_ENV == 'development' ? 'http://192.168.82.11:7085/api/':'http://192.168.82.11:7085'
 }
 

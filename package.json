@@ -4,8 +4,8 @@
   "description": "多页面输入多页面输出，支持ES6，代理，打包等",
   "main": "index.js",
   "scripts": {
-    "dev": "gulp default",
-    "build": "gulp build"
+    "dev": "set NODE_ENV=development&& gulp default",
+    "build": "set NODE_ENV=production&& gulp build"
   },
   "author": "Promise",
   "license": "ISC",
