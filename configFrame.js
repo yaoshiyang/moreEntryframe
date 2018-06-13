@@ -19,12 +19,16 @@ module.exports = {
         window$ : 'window.$'  // 把jquery注册到全局 ， 这样涉及到第三方jquery也可以用了。html直接引入JS 即可
     },
 
+    // 是否开启js代码检查
+    webpack_esline_isOpen:false,
+
     // 发版是否需要压缩成zip
     // 默认是false
     gulp_copy_copyDist_isZip: false,  
 
     // 发版本路径
     // 默认是 bin/ 目录下
+    // 相对于gulp文件目录
     gulp_copy_copyDist_root:'',
     
     // 配置browserslist   https://github.com/browserslist/browserslist#queries

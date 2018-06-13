@@ -10,11 +10,12 @@ const configFrame = require('../configFrame');
 const targetRoot = configFrame.gulp_server_targetRoot;
 module.exports = function (gulp, $, dist) {
     $.util.log(`================================`);
-    $.util.log(`启动本地服务http://localhost:8080`);
+    $.util.log(`启动本地服务http://localhost:8000`);
     $.util.log(`================================`);
     $.connect.server({
+        host:'::',
         root:dist.root,
-        port:8080,
+        port:8000,
         livereload:true,
         middleware:(connect, opt) => [proxyMiddleware('/api',{target: targetRoot,changeOrigin: true})]
     });

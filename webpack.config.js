@@ -3,7 +3,29 @@ const glob = require("glob");
 const path = require('path');
 const configFrame = require('./configFrame');
 const { union } = require('lodash');
-
+const sepecilRules = [
+    {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "eslint-loader",
+        exclude: /node_modules/
+    }
+];
+const noramlRules=[
+    {
+        test: /\.art$/,
+        exclude: /node_modules/,
+        loader: "art-template-loader" 
+    },
+    {
+        test: '/\.js$',
+        exclude: /node_modules/,
+        loader: 'bebel-loader',
+        options: { 
+            presets: ['es2015', 'stage-0'] // react 快照其实可以不要，本来准备做jsx支持的
+        }
+    }
+]
 const config = {
     entry: {
         // 1.注册第三方需要打包的库 注意这个包最大不建议244  2.不建议取消common,正常活动页都会产生2个即以上页面
@@ -14,27 +36,7 @@ const config = {
         filename: '[name].js'
     },
     module: {
-        rules: [
-            {
-                enforce: "pre",
-                test: /\.js$/,
-                loader: "eslint-loader",
-                exclude: /node_modules/
-            },
-            {
-                test: /\.art$/,
-                exclude: /node_modules/,
-                loader: "art-template-loader" 
-            },
-            {
-                test: '/\.js$',
-                exclude: /node_modules/,
-                loader: 'bebel-loader',
-                options: { 
-                    presets: ['es2015', 'stage-0'] // react 快照其实可以不要，本来准备做jsx支持的
-                }
-            }
-        ]
+        rules: (configFrame.webpack_esline_isOpen ? sepecilRules : []).concat(noramlRules)
     },
     resolve:{
         alias:Object.assign({},{
